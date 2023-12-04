@@ -163,7 +163,7 @@ impl CSVManipulation for CSVData {
     fn paginate(&self, start: usize, end: usize) {
         let columns_width = self.calculate_max_col_width();
         let buffer_end = end + 1;
-        for row in self.data.iter().take(buffer_end - start) {
+        for row in self.data.iter().skip(start - 1).take(buffer_end - start) {
             println!("{}", self.format_row(row, &columns_width))
         }
     }
